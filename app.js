@@ -8,14 +8,16 @@ document.getElementById('plus').addEventListener('click', () => calculate('+'));
 document.getElementById('minus').addEventListener('click', () => calculate('-'));
 document.getElementById('multiply').addEventListener('click', () => calculate('*'));
 document.getElementById('divide').addEventListener('click', () => calculate('/'));
+document.getElementById('power').addEventListener('click', () => calculate('^'));
+document.getElementById('sqrt').addEventListener('click', () => calculate('√'));
 
 // Функция для выполнения вычислений
 function calculate(operation) {
   const num1 = parseFloat(input1.value); // Преобразование значений полей ввода в числа
   const num2 = parseFloat(input2.value);
 
-  if (isNaN(num1) || isNaN(num2)) {
-    resultDisplay.innerText = 'Введите оба числа!';
+  if (isNaN(num1) && operation !== '√') {
+    resultDisplay.innerText = 'Введите 1 число!';
     return;
   }
 
@@ -40,6 +42,20 @@ function calculate(operation) {
       } else {
         result = num1 / num2;
       }
+      break;
+    case '^':
+      if (isNaN(num2)) {
+        resultDisplay.innerText = 'Введите степень!';
+        return;
+      }
+      result = Math.pow(num1, num2); // Возведение в степень
+      break;
+    case '√':
+      if (num1 < 0) {
+        resultDisplay.innerText = 'Ошибка: Корень из отрицательного числа!';
+        return;
+      }
+      result = Math.sqrt(num1); // Извлечение квадратного корня
       break;
     default:
       break;
