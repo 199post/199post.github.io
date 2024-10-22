@@ -14,13 +14,15 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
-    <title>Калькулятор с Салютом</title>
+    <title>Калькулятор с Салютом и Случайными Числами</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="app.js" defer></script>
   </head>
   <body class="bg-dark text-light">
     <div class="container w-50 pt-5">
       <h1>Калькулятор</h1>
+
+      <!-- Поля для ввода чисел -->
       <input
         type="number"
         class="form-control mb-2"
@@ -33,6 +35,8 @@
         placeholder="Введите 2 число"
         id="input2"
       />
+
+      <!-- Кнопки операций -->
       <div class="d-flex mb-2">
         <button class="btn btn-success flex-grow-1 mx-2" id="plus">+</button>
         <button class="btn btn-danger flex-grow-1 mx-2" id="minus">-</button>
@@ -42,6 +46,24 @@
         <button class="btn btn-secondary flex-grow-1 mx-2" id="sqrt">√</button>
       </div>
 
+      <!-- Поля для генерации случайного числа -->
+      <div class="mb-2">
+        <input
+          type="number"
+          class="form-control mb-2"
+          placeholder="Минимум"
+          id="min-value"
+        />
+        <input
+          type="number"
+          class="form-control mb-2"
+          placeholder="Максимум"
+          id="max-value"
+        />
+        <button class="btn btn-outline-info w-100" id="randomNumber">Сгенерировать случайное число</button>
+      </div>
+
+      <!-- Результат -->
       <div class="text-bg-light p-3 text-center">
         <h4>Результат:</h4>
         <p id="result" class="mb-0">0</p>
