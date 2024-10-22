@@ -1,3 +1,19 @@
+// Функция для генерации случайного цвета
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+// Функция для установки случайного фона
+function setRandomBackgroundColor() {
+  const randomColor = getRandomColor();
+  document.body.style.backgroundColor = randomColor;
+}
+
 // Функция запуска салюта
 function launchConfetti() {
   confetti({
@@ -85,3 +101,8 @@ document.getElementById('randomNumber').addEventListener('click', function() {
     document.getElementById('result').innerText = 'Ошибка диапазона!';
   }
 });
+
+// Установка случайного фона при загрузке страницы
+window.onload = function() {
+  setRandomBackgroundColor();
+};
