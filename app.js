@@ -14,95 +14,98 @@ function setRandomBackgroundColor() {
   document.body.style.backgroundColor = randomColor;
 }
 
-// Функция запуска салюта
-function launchConfetti() {
-  confetti({
-    particleCount: 100,
-    spread: 70,
-    origin: { y: 0.6 }
-  });
-}
-
-// Проверка, чётное ли число
-function isEven(num) {
-  return num % 2 === 0;
-}
-
-// Получение значений из полей
-function getInputValues() {
+// Функция для выполнения арифметических операций
+function calculate(operation) {
   const num1 = parseFloat(document.getElementById('input1').value);
   const num2 = parseFloat(document.getElementById('input2').value);
-  return { num1, num2 };
+  let result;
+
+  switch (operation) {
+    case 'plus':
+      result = num1 + num2;
+      break;
+    case 'minus':
+      result = num1 - num2;
+      break;
+    case 'multiply':
+      result = num1 * num2;
+      break;
+    case 'divide':
+      result = num2 !== 0 ? num1 / num2 : 'Ошибка деления на ноль';
+      break;
+    case 'power':
+      result = Math.pow(num1, num2);
+      break;
+    case 'sqrt':
+      result = Math.sqrt(num1);
+      break;
+    default:
+      result = 'Неизвестная операция';
+  }
+
+  displayResult(result);
 }
 
-// Обновление результата и запуск салюта, если результат чётный
-function updateResult(value) {
-  document.getElementById('result').innerText = value;
-  if (isEven(value)) {
-    launchConfetti();
+// Функция для вывода результата
+function displayResult(result) {
+  const resultElement = document.getElementById('result');
+  resultElement.innerText = result;
+
+  // Если результат четный — запускаем анимацию салюта
+  if (typeof result === 'number' && result % 2 === 0) {
+    triggerFireworks();
   }
 }
 
-// Генерация случайного числа в диапазоне
-function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+// Функция для случайного числа из заданного диапазона
+function generateRandomNumber() {
+  const min = parseFloat(document.getElementById('min-value').value);
+  const max = parseFloat(document.getElementById('max-value').value);
+  
+  if (isNaN(min) || isNaN(max)) {
+    displayResult('Введите корректные значения');
+    return;
+  }
+
+  const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  displayResult(randomNum);
 }
 
-// Операции
+// Функция для анимации салюта (простой пример)
+function triggerFireworks() {
+  alert('🎆 Салют! Четный результат!');
+}
+
+// Привязка кнопок к событиям
 document.getElementById('plus').addEventListener('click', function() {
-  const { num1, num2 } = getInputValues();
-  const result = num1 + num2;
-  updateResult(result);
+  calculate('plus');
 });
 
 document.getElementById('minus').addEventListener('click', function() {
-  const { num1, num2 } = getInputValues();
-  const result = num1 - num2;
-  updateResult(result);
+  calculate('minus');
 });
 
 document.getElementById('multiply').addEventListener('click', function() {
-  const { num1, num2 } = getInputValues();
-  const result = num1 * num2;
-  updateResult(result);
+  calculate('multiply');
 });
 
 document.getElementById('divide').addEventListener('click', function() {
-  const { num1, num2 } = getInputValues();
-  if (num2 === 0) {
-    document.getElementById('result').innerText = 'Деление на ноль!';
-  } else {
-    const result = num1 / num2;
-    updateResult(result);
-  }
+  calculate('divide');
 });
 
 document.getElementById('power').addEventListener('click', function() {
-  const { num1, num2 } = getInputValues();
-  const result = Math.pow(num1, num2);
-  updateResult(result);
+  calculate('power');
 });
 
 document.getElementById('sqrt').addEventListener('click', function() {
-  const num1 = parseFloat(document.getElementById('input1').value);
-  const result = Math.sqrt(num1);
-  updateResult(result);
+  calculate('sqrt');
 });
 
-// Генерация случайного числа
 document.getElementById('randomNumber').addEventListener('click', function() {
-  const min = parseFloat(document.getElementById('min-value').value);
-  const max = parseFloat(document.getElementById('max-value').value);
-
-  if (!isNaN(min) && !isNaN(max) && min <= max) {
-    const randomNumber = getRandomNumber(min, max);
-    updateResult(randomNumber); // Отображаемм случайное число в элементе "result"
-  } else {
-    document.getElementById('result').innerText = 'Ошибка диапазона!';
-  }
+  generateRandomNumber();
 });
 
-// Установка случайного фона при загрузке страницы
+// Устанавливаем случайный фон при загрузке страницы
 window.onload = function() {
   setRandomBackgroundColor();
 };
