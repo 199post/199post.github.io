@@ -96,7 +96,7 @@ document.getElementById('randomNumber').addEventListener('click', function() {
 
   if (!isNaN(min) && !isNaN(max) && min <= max) {
     const randomNumber = getRandomNumber(min, max);
-    updateResult(randomNumber); // Отображаем случайное число в элементе "result"
+    updateResult(randomNumber); // Отображаемм случайное число в элементе "result"
   } else {
     document.getElementById('result').innerText = 'Ошибка диапазона!';
   }
