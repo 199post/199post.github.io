@@ -27,6 +27,11 @@ function updateResult(value) {
   }
 }
 
+// Генерация случайного числа в диапазоне
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // Операции
 document.getElementById('plus').addEventListener('click', function() {
   const { num1, num2 } = getInputValues();
@@ -66,4 +71,17 @@ document.getElementById('sqrt').addEventListener('click', function() {
   const num1 = parseFloat(document.getElementById('input1').value);
   const result = Math.sqrt(num1);
   updateResult(result);
+});
+
+// Генерация случайного числа
+document.getElementById('randomNumber').addEventListener('click', function() {
+  const min = parseFloat(document.getElementById('min-value').value);
+  const max = parseFloat(document.getElementById('max-value').value);
+
+  if (!isNaN(min) && !isNaN(max) && min <= max) {
+    const randomNumber = getRandomNumber(min, max);
+    updateResult(randomNumber);
+  } else {
+    document.getElementById('result').innerText = 'Ошибка диапазона!';
+  }
 });
