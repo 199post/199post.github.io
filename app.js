@@ -80,7 +80,7 @@ document.getElementById('randomNumber').addEventListener('click', function() {
 
   if (!isNaN(min) && !isNaN(max) && min <= max) {
     const randomNumber = getRandomNumber(min, max);
-    updateResult(randomNumber);
+    updateResult(randomNumber); // Отображаем случайное число в элементе "result"
   } else {
     document.getElementById('result').innerText = 'Ошибка диапазона!';
   }
