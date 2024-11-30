@@ -1,9 +1,18 @@
-<!DOCTYPE html>
+flas<!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8GX5WX8P2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L8GX5WX8P2');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Регистрация</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,6 +29,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 300px;
+            text-align: center;
         }
         .form-container h2 {
             margin-bottom: 20px;
@@ -28,6 +38,7 @@
         }
         .form-group {
             margin-bottom: 15px;
+            text-align: left;
         }
         .form-group label {
             display: block;
@@ -58,28 +69,42 @@
         .form-group button:hover {
             background-color: #0056b3;
         }
+        .auth-button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .auth-button:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <h2>Register</h2>
+        <h2>Регистрация</h2>
         <form action="/register" method="POST">
             <div class="form-group">
-                <label for="username">Username</label>
+                <label for="username">Имя пользователя</label>
                 <input type="text" id="username" name="username" required>
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Электронная почта</label>
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Пароль</label>
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
-                <button type="submit">Register</button>
+                <button type="submit">Зарегистрироваться</button>
             </div>
         </form>
+        <button class="auth-button" onclick="window.location.href='/login'">Авторизация</button>
     </div>
 </body>
 </html>
